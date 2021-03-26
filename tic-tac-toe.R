@@ -13,12 +13,11 @@ player <- initial_input()
 computer <- if (player == "X") "O" else "X"
 
 # Greeting!
-cat("\nWelcome,", player, "\n\n")
+cat("\nWelcome,", player, "!\n\n")
 
 # Begin!
 round <- 1
 valid_moves <- get_valid_moves(board)
-print(valid_moves)
 
 # Run game
 while (length(valid_moves) > 0) {
