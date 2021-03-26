@@ -20,9 +20,11 @@ round <- 1
 valid_moves <- get_valid_moves(board)
 
 # If player chose O, computer makes the first move
-move <- get_computer_move(size, valid_moves)
-board[move[1], move[2]] <- computer
-valid_moves <- get_valid_moves(board)
+if (player == "O") {
+  move <- get_computer_move(size, valid_moves)
+  board[move[1], move[2]] <- computer
+  valid_moves <- get_valid_moves(board)
+}
 
 # Run game
 while (length(valid_moves) > 0) {
