@@ -29,6 +29,7 @@ initial_input <- function() {
   return(toupper(input))
 }
 
+# Get player move
 player_turn_input <- function(size, valid_moves) {
   cat("Your turn!\n")
   choices <- paste(seq.int(size))
@@ -38,6 +39,7 @@ player_turn_input <- function(size, valid_moves) {
 
   move <- row * size + col
 
+  # If invalid, ask again
   if (!(move %in% valid_moves)) {
     cat("That was not a valid move.\n")
     return(player_turn_input(size, valid_moves))

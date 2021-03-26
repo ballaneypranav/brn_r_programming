@@ -114,6 +114,8 @@ is_move_allowed <- function(board, row, column) {
   return(board[row, column] == " ")
 }
 
+# Checks if game is over and displays an appropriate closing message
+# Then quits
 game_over <- function(player, winner, valid_moves) {
   if (winner == player) {
     print_board()

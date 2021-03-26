@@ -1,3 +1,4 @@
+# Returns a random valid computer move
 get_computer_move <- function(size, valid_moves) {
   row <- 0
   col <- 0
@@ -6,9 +7,8 @@ get_computer_move <- function(size, valid_moves) {
   while (!(move %in% valid_moves)) {
     row <- sample(1:size, 1)
     col <- sample(1:size, 1)
-    move <- row*size + col
+    move <- row * size + col
   }
 
   return(c(row, col))
-
 }
