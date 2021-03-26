@@ -19,6 +19,11 @@ cat("\nWelcome,", player, "!\n\n")
 round <- 1
 valid_moves <- get_valid_moves(board)
 
+# If player chose O, computer makes the first move
+move <- get_computer_move(size, valid_moves)
+board[move[1], move[2]] <- computer
+valid_moves <- get_valid_moves(board)
+
 # Run game
 while (length(valid_moves) > 0) {
 
@@ -33,14 +38,20 @@ while (length(valid_moves) > 0) {
 
   board[row, col] <- player
 
+  cat("\nMove placed!\n")
+
   # Check if game is over
   winner <- game_won(board)
   valid_moves <- get_valid_moves(board)
   game_over(player, winner, valid_moves)
 
+  Sys.sleep(1)
+
   # Perform computer move
   move <- get_computer_move(size, valid_moves)
   board[move[1], move[2]] <- computer
+
+  cat("Computer move registered.\n\n")
 
   # Check if game is over
   winner <- game_won(board)

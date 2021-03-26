@@ -33,18 +33,21 @@ initial_input <- function() {
 player_turn_input <- function(size, valid_moves) {
   cat("Your turn!\n")
   choices <- paste(seq.int(size))
+  move <- 0
 
-  row <- as.integer(validated_input("What row?", choices, paste("Please choose a row number between 1 and", size)))
-  col <- as.integer(validated_input("What column?", choices, paste("Please choose a column number between 1 and", size)))
+  while (!(move %in% valid_moves)) {
 
-  move <- row * size + col
+    row <- as.integer(validated_input("What row?", choices, paste("Please choose a row number between 1 and", size)))
+    col <- as.integer(validated_input("What column?", choices, paste("Please choose a column number between 1 and", size)))
 
-  # If invalid, ask again
-  if (!(move %in% valid_moves)) {
-    cat("That was not a valid move.\n")
-    return(player_turn_input(size, valid_moves))
+    move <- row * size + col
+
+    # If invalid, ask again
+    if (move %in% valid_moves) {
+      return(c(row, col))
+    } 
+    else {
+      cat("That's not a valid move.\n")
+    }
   }
-
-  return(c(row, col))
-
 }
