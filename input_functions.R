@@ -12,7 +12,7 @@ validated_input <- function(prompt, allowed_inputs, error_msg) {
     }
     cat(prompt, "")
     input <- readLines(con = con, n = 1)
-    if (input == "quit") {
+    if (input %in% c("q", "quit")) {
       quit()
     }
     if (!(input %in% allowed_inputs)) {
@@ -29,12 +29,19 @@ initial_input <- function() {
   return(toupper(input))
 }
 
-player_turn_input <- function(size) {
+player_turn_input <- function(size, valid_moves) {
   cat("Your turn!\n")
   choices <- paste(seq.int(size))
 
-  row <- validated_input("What row?", choices, paste("Please choose a row number between 1 and", size))
-  col <- validated_input("What column?", choices, paste("Please choose a column number between 1 and", size))
+  row <- as.integer(validated_input("What row?", choices, paste("Please choose a row number between 1 and", size)))
+  col <- as.integer(validated_input("What column?", choices, paste("Please choose a column number between 1 and", size)))
+
+  move <- row * size + col
+
+  if (!(move %in% valid_moves)) {
+    cat("That was not a valid move.\n")
+    return(player_turn_input(size, valid_moves))
+  }
 
   return(c(row, col))
 
