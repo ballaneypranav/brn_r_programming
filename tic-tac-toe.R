@@ -1,31 +1,13 @@
-board = array(rep(" ", 9), dim = c(3, 3))
+source("print_functions.R")
+source("input_functions.R")
 
-print_header <- function(round) {
-  cat("#################\n\n")
-  cat("#### Round", round, "####\n\n")
-  cat("#################\n\n")
-}
+size <- 3
+board = array(rep(" ", size*size), dim = c(size*size, size*size))
 
-print_board <- function() {
-  # Prints the current state of the board
-  cat("Current board:\n")
-  cat("~~~~~~~~~~~~~~\n\n")
-  cat("     ")
-  for (i in c(1, 2, 3)) {
-    cat(i, " ")
-  }
-  cat("\n")
+player <- initial_input()
 
-  for (i in c(1, 2, 3)) {
-    cat(" ", i, " ")
-    for (c in board[i, ]) {
-      cat(c, " ")
-    }
-    cat("\n")
-  }
-
-  cat("\n~~~~~~~~~~~~~~")
-}
-
+cat("\nWelcome,", player, "\n\n")
 print_header(1)
 print_board()
+
+move <- player_turn_input(size)
